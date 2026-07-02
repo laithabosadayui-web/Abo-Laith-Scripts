@@ -24,12 +24,12 @@ local ToggleCorner = Instance.new("UICorner")
 ToggleCorner.CornerRadius = UDim.new(0, 8)
 ToggleCorner.Parent = ToggleBtn
 
--- لوحة التحكم الرئيسية الاحترافية والمنظمة (تم زيادة الارتفاع قليلاً للحقوق)
+-- لوحة التحكم الرئيسية الاحترافية والمنظمة
 local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MasterMainFrame"
 MainFrame.Parent = ScreenGui
 MainFrame.Position = UDim2.new(0.1, 0, 0.15, 0)
-MainFrame.Size = UDim2.new(0, 280, 0, 430) -- حجم مخصص ومريح للترتيب الجديد
+MainFrame.Size = UDim2.new(0, 280, 0, 450) -- تعديل الحجم ليتناسب مع السلايدر الجديد
 MainFrame.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
 MainFrame.Active = true
 MainFrame.Draggable = true
@@ -44,7 +44,7 @@ local Title = Instance.new("TextLabel")
 Title.Parent = MainFrame
 Title.Size = UDim2.new(1, 0, 0, 40)
 Title.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
-Title.Text = "⚡ ONE TAP MASTER"
+Title.Text = "⚡ ONE TAP MASTER HUB"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 13
 Title.Font = Enum.Font.GothamBold
@@ -70,15 +70,15 @@ local function createButton(text, pos, parent)
     return btn
 end
 
-local AimBtn = createButton("🤖 AIMBOT: OFF", UDim2.new(0.075, 0, 0.12, 0), MainFrame)
-local EspBtn = createButton("👁️ ESP WALLHACK: OFF", UDim2.new(0.075, 0, 0.22, 0), MainFrame)
-local SpeedBtn = createButton("⚡ SPEED BOOST: OFF", UDim2.new(0.075, 0, 0.32, 0), MainFrame)
-local JumpBtn = createButton("🦘 HIGH JUMP: OFF", UDim2.new(0.075, 0, 0.42, 0), MainFrame)
+local AimBtn = createButton("🤖 AIMBOT: OFF", UDim2.new(0.075, 0, 0.11, 0), MainFrame)
+local EspBtn = createButton("👁️ ESP WALLHACK: OFF", UDim2.new(0.075, 0, 0.20, 0), MainFrame)
+local SpeedBtn = createButton("⚡ SPEED BOOST: OFF", UDim2.new(0.075, 0, 0.29, 0), MainFrame)
+local JumpBtn = createButton("🦘 HIGH JUMP: OFF", UDim2.new(0.075, 0, 0.38, 0), MainFrame)
 
 -- عنوان قسم تخصيص دائرة الـ FOV
 local FOVTitle = Instance.new("TextLabel")
 FOVTitle.Size = UDim2.new(1, 0, 0, 20)
-FOVTitle.Position = UDim2.new(0, 0, 0.53, 0)
+FOVTitle.Position = UDim2.new(0, 0, 0.48, 0)
 FOVTitle.BackgroundTransparency = 1
 FOVTitle.Text = "─── FOV CIRCLE CUSTOMIZE ───"
 FOVTitle.TextColor3 = Color3.fromRGB(150, 150, 150)
@@ -86,40 +86,55 @@ FOVTitle.TextSize = 10
 FOVTitle.Font = Enum.Font.GothamBold
 FOVTitle.Parent = MainFrame
 
--- أزرار التحكم بحجم الدائرة
-local FOVPlusBtn = createButton("➕ INCREASE FOV", UDim2.new(0.075, 0, 0.59, 0), MainFrame)
-FOVPlusBtn.Size = UDim2.new(0.4, 0, 0, 30)
-FOVPlusBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+-- [تحديث] إضافة شريط تحكم (Slider) ذكي ومتحرك لحجم الدائرة
+local SliderFrame = Instance.new("Frame")
+SliderFrame.Size = UDim2.new(0.85, 0, 0, 30)
+SliderFrame.Position = UDim2.new(0.075, 0, 0.54, 0)
+SliderFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+SliderFrame.Parent = MainFrame
+local SliderCorner = Instance.new("UICorner")
+SliderCorner.CornerRadius = UDim.new(0, 6)
+SliderCorner.Parent = SliderFrame
 
-local FOVMinusBtn = createButton("➖ DECREASE FOV", UDim2.new(0.525, 0, 0.59, 0), MainFrame)
-FOVMinusBtn.Size = UDim2.new(0.4, 0, 0, 30)
-FOVMinusBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+local SliderBar = Instance.new("Frame")
+SliderBar.Size = UDim2.new(0.33, 0, 1, 0) -- حجم افتراضي يعبر عن القيمة 150
+SliderBar.BackgroundColor3 = Color3.fromRGB(0, 150, 255)
+SliderBar.Parent = SliderFrame
+local BarCorner = Instance.new("UICorner")
+BarCorner.CornerRadius = UDim.new(0, 6)
+BarCorner.Parent = SliderBar
+
+local SliderText = Instance.new("TextLabel")
+SliderText.Size = UDim2.new(1, 0, 1, 0)
+SliderText.BackgroundTransparency = 1
+SliderText.Text = "🔵 FOV RADIUS: 150"
+SliderText.TextColor3 = Color3.fromRGB(255, 255, 255)
+SliderText.Font = Enum.Font.GothamBold
+SliderText.TextSize = 11
+SliderText.Parent = SliderFrame
 
 -- زر تغيير الألوان للدائرة
-local ColorBtn = createButton("🎨 CHANGE FOV COLOR", UDim2.new(0.075, 0, 0.69, 0), MainFrame)
+local ColorBtn = createButton("🎨 CHANGE FOV COLOR", UDim2.new(0.075, 0, 0.64, 0), MainFrame)
 ColorBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 -- ==================== قسم الحقوق والديسكورد (Abo Laith) ====================
 
 local CreditsTitle = Instance.new("TextLabel")
 CreditsTitle.Size = UDim2.new(1, 0, 0, 20)
-CreditsTitle.Position = UDim2.new(0, 0, 0.79, 0)
+CreditsTitle.Position = UDim2.new(0, 0, 0.77, 0)
 CreditsTitle.BackgroundTransparency = 1
 CreditsTitle.Text = "👑 MADE BY ABO LAITH"
-CreditsTitle.TextColor3 = Color3.fromRGB(0, 255, 150) -- لون نيون مميز للحقوق
+CreditsTitle.TextColor3 = Color3.fromRGB(0, 255, 150)
 CreditsTitle.TextSize = 11
 CreditsTitle.Font = Enum.Font.GothamBold
 CreditsTitle.Parent = MainFrame
 
--- زر الديسكورد لنسخ الرابط
-local DiscordBtn = createButton("💬 COPY DISCORD LINK", UDim2.new(0.075, 0, 0.85, 0), MainFrame)
-DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242) -- لون الديسكورد الرسمي
+local DiscordBtn = createButton("💬 COPY DISCORD LINK", UDim2.new(0.075, 0, 0.83, 0), MainFrame)
+DiscordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
 DiscordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 
 DiscordBtn.MouseButton1Click:Connect(function()
-    -- استبدل الرابط أدناه برابط سيرفر الديسكورد الخاص بك
     local discordLink = "https://discord.gg/YOUR_LINK_HERE"
-    
     if setclipboard then
         setclipboard(discordLink)
         DiscordBtn.Text = "✅ COPIED TO CLIPBOARD!"
@@ -148,6 +163,40 @@ local colorsList = {
 }
 local currentColorIndex = 1
 
+-- ==================== برمجة وظيفة السلايدر ====================
+
+local isDragging = false
+
+local function updateSlider(input)
+    local relativeX = input.Position.X - SliderFrame.AbsolutePosition.X
+    local percentage = math.clamp(relativeX / SliderFrame.AbsoluteSize.X, 0, 1)
+    SliderBar.Size = UDim2.new(percentage, 0, 1, 0)
+    
+    -- حساب الحجم بين 30 و 450 بكسل
+    local calculatedRadius = math.floor(30 + (percentage * 420))
+    FOVCircle.Radius = calculatedRadius
+    SliderText.Text = "🔵 FOV RADIUS: " .. tostring(calculatedRadius)
+end
+
+SliderFrame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        isDragging = true
+        updateSlider(input)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+        updateSlider(input)
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        isDragging = false
+    end
+end)
+
 -- ==================== برمجة وظائف التفاعل الفورية ====================
 
 ToggleBtn.MouseButton1Click:Connect(function()
@@ -168,6 +217,13 @@ AimBtn.MouseButton1Click:Connect(function()
     AimBtn.TextColor3 = aimbotEnabled and Color3.fromRGB(100, 255, 100) or Color3.fromRGB(255, 100, 100)
 end)
 
+-- دالة إزالة الـ ESP عند الإيقاف
+local function removeESP(character)
+    if character and character:FindFirstChild("LuxuryESP") then
+        character.LuxuryESP:Destroy()
+    end
+end
+
 EspBtn.MouseButton1Click:Connect(function()
     espEnabled = not espEnabled
     EspBtn.BackgroundColor3 = espEnabled and Color3.fromRGB(35, 50, 35) or Color3.fromRGB(35, 30, 35)
@@ -176,9 +232,7 @@ EspBtn.MouseButton1Click:Connect(function()
     
     if not espEnabled then
         for _, p in pairs(Players:GetPlayers()) do
-            if p.Character and p.Character:FindFirstChild("LuxuryESP") then
-                p.Character.LuxuryESP:Destroy()
-            end
+            if p.Character then removeESP(p.Character) end
         end
     end
 end)
@@ -195,14 +249,6 @@ JumpBtn.MouseButton1Click:Connect(function()
     JumpBtn.BackgroundColor3 = jumpEnabled and Color3.fromRGB(35, 50, 35) or Color3.fromRGB(35, 30, 35)
     JumpBtn.Text = jumpEnabled and "🦘 HIGH JUMP: ON" or "🦘 HIGH JUMP: OFF"
     JumpBtn.TextColor3 = jumpEnabled and Color3.fromRGB(100, 255, 100) or Color3.fromRGB(255, 100, 100)
-end)
-
-FOVPlusBtn.MouseButton1Click:Connect(function()
-    FOVCircle.Radius = math.min(FOVCircle.Radius + 25, 400)
-end)
-
-FOVMinusBtn.MouseButton1Click:Connect(function()
-    FOVCircle.Radius = math.max(FOVCircle.Radius - 25, 50)
 end)
 
 ColorBtn.MouseButton1Click:Connect(function()
@@ -232,6 +278,27 @@ local function getClosestPlayerToCrosshair()
     return closestPlayer
 end
 
+-- [حل مشكلة الـ ESP] حلقة فحص قوية لضمان شمول جميع اللاعبين الجدد والحاليين
+local function applyESP(player)
+    player.CharacterAdded:Connect(function(character)
+        if espEnabled then
+            task.wait(0.5) -- انتظار تحميل الشخصية بالكامل لمنع التخطي
+            if character:FindFirstChild("Humanoid") and not character:FindFirstChild("LuxuryESP") then
+                local highlight = Instance.new("Highlight")
+                highlight.Name = "LuxuryESP"
+                highlight.Parent = character
+                highlight.FillColor = Color3.fromRGB(160, 50, 255)
+                highlight.OutlineColor = Color3.fromRGB(255, 255, 255)
+                highlight.FillTransparency = 0.5
+            end
+        end
+    end)
+end
+
+-- تفعيل التعقب على جميع اللاعبين الموجودين والمنضمين لاحقاً
+for _, p in pairs(Players:GetPlayers()) do if p ~= LocalPlayer then applyESP(p) end end
+Players.PlayerAdded:Connect(function(p) if p ~= LocalPlayer then applyESP(p) end end)
+
 RunService.RenderStepped:Connect(function()
     FOVCircle.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
     
@@ -243,12 +310,12 @@ RunService.RenderStepped:Connect(function()
         end
     end
 
+    -- تحديث الـ ESP المستمر في الخلفية لضمان عدم اختفائه عن أي لاعب
     if espEnabled then
         for _, player in pairs(Players:GetPlayers()) do
             if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("Humanoid") and player.Character.Humanoid.Health > 0 then
-                local highlight = player.Character:FindFirstChild("LuxuryESP")
-                if not highlight then
-                    highlight = Instance.new("Highlight")
+                if not player.Character:FindFirstChild("LuxuryESP") then
+                    local highlight = Instance.new("Highlight")
                     highlight.Name = "LuxuryESP"
                     highlight.Parent = player.Character
                     highlight.FillColor = Color3.fromRGB(160, 50, 255)
